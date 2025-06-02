@@ -14,3 +14,5 @@ Delivery Partner is a feature-rich, user-friendly, and beautifully responsive we
 📍 Smart Location Integration — Built-in maps for optimal route planning and navigation.
 
 🔐 Secure Partner Login — We take your data and privacy extremely seriously.
+
+lets go!
