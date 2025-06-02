@@ -1,0 +1,165 @@
+
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@/components/ui/tabs";
+import { Button } from "@/components/ui/button";
+import { Link } from 'react-router-dom';
+import { ArrowLeft, Truck, Navigation, Wallet, History, Package, Settings } from 'lucide-react';
+
+// Import TableFooter along with other table components
+import { Table, TableBody, TableCell, TableFooter, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+
+// Import refactored components
+import ActiveTripsTab, { Trip } from '@/components/driver/ActiveTripsTab';
+import CompletedTripsTab from '@/components/driver/CompletedTripsTab';
+import WalletTab from '@/components/driver/WalletTab';
+import VehicleTab from '@/components/driver/VehicleTab';
+import TripUpdateTab from '@/components/driver/TripUpdateTab';
+import ProfileTab from '@/components/driver/ProfileTab';
+
+// Mock data for trips
+const mockTrips = [
+  { 
+    id: 'TR-1001', 
+    pickup: '123 Main St, Bangalore', 
+    dropoff: '456 Park Ave, Bangalore', 
+    status: 'pending', 
+    amount: 450, 
+    commission: 45,
+    driverAmount: 405,
+    date: '2024-05-11'
+  },
+  { 
+    id: 'TR-1002', 
+    pickup: '789 Church St, Bangalore', 
+    dropoff: '321 MG Road, Bangalore', 
+    status: 'completed', 
+    amount: 350, 
+    commission: 35,
+    driverAmount: 315, 
+    date: '2024-05-10'
+  },
+  { 
+    id: 'TR-1003', 
+    pickup: '555 Brigade Road, Bangalore', 
+    dropoff: '777 Indiranagar, Bangalore', 
+    status: 'completed', 
+    amount: 550, 
+    commission: 55,
+    driverAmount: 495, 
+    date: '2024-05-09'
+  },
+];
+
+const DriverPanel = () => {
+  const navigate = useNavigate();
+  const [isDriver, setIsDriver] = useState(true); // In a real app, this would come from authentication state
+  const [completedTrips, setCompletedTrips] = useState<Trip[]>(mockTrips.filter(trip => trip.status === 'completed'));
+  const [pendingTrips, setPendingTrips] = useState<Trip[]>(mockTrips.filter(trip => trip.status === 'pending'));
+  const [walletBalance, setWalletBalance] = useState(750);
+
+  // Check if user is a driver and redirect if not
+  useEffect(() => {
+    if (!isDriver) {
+      navigate('/');
+    }
+  }, [isDriver, navigate]);
+
+  return (
+    <div className="min-h-screen bg-gray-50 flex flex-col">
+      <div className="bg-white shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            <div className="flex items-center">
+              <Link to="/" className="inline-flex items-center text-gray-600 hover:text-gray-900">
+                <ArrowLeft className="h-5 w-5 mr-2" />
+                <span>Back to Home</span>
+              </Link>
+            </div>
+            <div className="text-2xl font-bold text-porter-red">Driver Panel</div>
+            <div className="flex items-center">
+              <div className="mr-4">
+                <span className="font-medium">Wallet:</span> ₹{walletBalance}
+              </div>
+              <Button variant="ghost" onClick={() => navigate('/')} className="text-porter-red">
+                Logout
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div className="flex-grow container mx-auto px-4 py-8">
+        <Tabs defaultValue="active-trips">
+          <TabsList className="grid grid-cols-6 mb-8">
+            <TabsTrigger value="active-trips" className="flex items-center">
+              <Package className="mr-2 h-4 w-4" />
+              <span>Active Trips</span>
+            </TabsTrigger>
+            <TabsTrigger value="completed-trips" className="flex items-center">
+              <History className="mr-2 h-4 w-4" />
+              <span>Trip History</span>
+            </TabsTrigger>
+            <TabsTrigger value="wallet" className="flex items-center">
+              <Wallet className="mr-2 h-4 w-4" />
+              <span>Wallet</span>
+            </TabsTrigger>
+            <TabsTrigger value="vehicle" className="flex items-center">
+              <Truck className="mr-2 h-4 w-4" />
+              <span>Vehicle</span>
+            </TabsTrigger>
+            <TabsTrigger value="trip-update" className="flex items-center">
+              <Navigation className="mr-2 h-4 w-4" />
+              <span>Trip Update</span>
+            </TabsTrigger>
+            <TabsTrigger value="profile" className="flex items-center">
+              <Settings className="mr-2 h-4 w-4" />
+              <span>Profile</span>
+            </TabsTrigger>
+          </TabsList>
+          
+          {/* Active Trips Tab */}
+          <TabsContent value="active-trips">
+            <ActiveTripsTab 
+              pendingTrips={pendingTrips} 
+              setPendingTrips={setPendingTrips} 
+              setCompletedTrips={setCompletedTrips} 
+            />
+          </TabsContent>
+          
+          {/* Completed Trips Tab */}
+          <TabsContent value="completed-trips">
+            <CompletedTripsTab completedTrips={completedTrips} />
+          </TabsContent>
+          
+          {/* Wallet Tab */}
+          <TabsContent value="wallet">
+            <WalletTab walletBalance={walletBalance} setWalletBalance={setWalletBalance} />
+          </TabsContent>
+          
+          {/* Vehicle Tab */}
+          <TabsContent value="vehicle">
+            <VehicleTab />
+          </TabsContent>
+          
+          {/* Trip Update Tab */}
+          <TabsContent value="trip-update">
+            <TripUpdateTab />
+          </TabsContent>
+          
+          {/* Profile Tab */}
+          <TabsContent value="profile">
+            <ProfileTab />
+          </TabsContent>
+        </Tabs>
+      </div>
+    </div>
+  );
+};
+
+export default DriverPanel;
