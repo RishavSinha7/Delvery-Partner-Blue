@@ -66,9 +66,9 @@ const Footer = () => {
                 <MapPin className="h-5 w-5 text-blue-500 flex-shrink-0 mr-3 mt-1" />
                 <span className="text-gray-300 leading-relaxed">
                   Delivery Partner Headquarters<br />
-                  7th Floor, Tower A, Building 8<br />
-                  DLF Cyber City, Gurugram<br />
-                  Haryana - 122002
+                  2nd Floor, Ajanta Tower<br />
+                  Bailley Road, Patna<br />
+                  Bihar 800014
                 </span>
               </div>
               <div className="flex items-center">
