@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -72,21 +71,22 @@ const DriverPanel = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
-      <div className="bg-white shadow-sm">
+      <div className="bg-white shadow-sm border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
-              <Link to="/" className="inline-flex items-center text-gray-600 hover:text-gray-900">
+              <Link to="/" className="inline-flex items-center text-gray-600 hover:text-blue-700">
                 <ArrowLeft className="h-5 w-5 mr-2" />
                 <span>Back to Home</span>
               </Link>
             </div>
-            <div className="text-2xl font-bold text-porter-red">Driver Panel</div>
+            <div className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-indigo-700 bg-clip-text text-transparent">Driver Panel</div>
             <div className="flex items-center">
               <div className="mr-4">
-                <span className="font-medium">Wallet:</span> ₹{walletBalance}
+                <span className="font-medium">Wallet:</span> 
+                <span className="text-blue-700">₹{walletBalance}</span>
               </div>
-              <Button variant="ghost" onClick={() => navigate('/')} className="text-porter-red">
+              <Button variant="ghost" onClick={() => navigate('/')} className="text-blue-600 hover:text-blue-800 hover:bg-blue-50">
                 Logout
               </Button>
             </div>
@@ -96,28 +96,46 @@ const DriverPanel = () => {
       
       <div className="flex-grow container mx-auto px-4 py-8">
         <Tabs defaultValue="active-trips">
-          <TabsList className="grid grid-cols-6 mb-8">
-            <TabsTrigger value="active-trips" className="flex items-center">
+          <TabsList className="grid grid-cols-6 mb-8 bg-gray-100">
+            <TabsTrigger 
+              value="active-trips" 
+              className="flex items-center data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-indigo-700 data-[state=active]:text-white"
+            >
               <Package className="mr-2 h-4 w-4" />
               <span>Active Trips</span>
             </TabsTrigger>
-            <TabsTrigger value="completed-trips" className="flex items-center">
+            <TabsTrigger 
+              value="completed-trips" 
+              className="flex items-center data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-indigo-700 data-[state=active]:text-white"
+            >
               <History className="mr-2 h-4 w-4" />
               <span>Trip History</span>
             </TabsTrigger>
-            <TabsTrigger value="wallet" className="flex items-center">
+            <TabsTrigger 
+              value="wallet" 
+              className="flex items-center data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-indigo-700 data-[state=active]:text-white"
+            >
               <Wallet className="mr-2 h-4 w-4" />
               <span>Wallet</span>
             </TabsTrigger>
-            <TabsTrigger value="vehicle" className="flex items-center">
+            <TabsTrigger 
+              value="vehicle" 
+              className="flex items-center data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-indigo-700 data-[state=active]:text-white"
+            >
               <Truck className="mr-2 h-4 w-4" />
               <span>Vehicle</span>
             </TabsTrigger>
-            <TabsTrigger value="trip-update" className="flex items-center">
+            <TabsTrigger 
+              value="trip-update" 
+              className="flex items-center data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-indigo-700 data-[state=active]:text-white"
+            >
               <Navigation className="mr-2 h-4 w-4" />
               <span>Trip Update</span>
             </TabsTrigger>
-            <TabsTrigger value="profile" className="flex items-center">
+            <TabsTrigger 
+              value="profile" 
+              className="flex items-center data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-indigo-700 data-[state=active]:text-white"
+            >
               <Settings className="mr-2 h-4 w-4" />
               <span>Profile</span>
             </TabsTrigger>

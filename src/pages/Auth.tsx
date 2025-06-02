@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { z } from "zod";
@@ -114,7 +113,7 @@ const Auth = () => {
       <div className="flex-grow flex items-center justify-center px-4 py-12">
         <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
           <div className="mb-6 text-center">
-            <h2 className="text-3xl font-bold text-porter-black">
+            <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-indigo-700 bg-clip-text text-transparent">
               {activeTab === "signin" ? "Welcome Back" : "Create Account"}
             </h2>
             <p className="text-sm text-gray-500 mt-2">
@@ -128,10 +127,11 @@ const Auth = () => {
             defaultValue="signin" 
             value={activeTab} 
             onValueChange={(value) => setActiveTab(value as "signin" | "signup")}
+            className="bg-white"
           >
-            <TabsList className="grid w-full grid-cols-2 mb-6">
-              <TabsTrigger value="signin" className="text-lg">Sign In</TabsTrigger>
-              <TabsTrigger value="signup" className="text-lg">Sign Up</TabsTrigger>
+            <TabsList className="grid w-full grid-cols-2 mb-6 bg-gray-100">
+              <TabsTrigger value="signin" className="text-lg data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-indigo-700 data-[state=active]:text-white">Sign In</TabsTrigger>
+              <TabsTrigger value="signup" className="text-lg data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-indigo-700 data-[state=active]:text-white">Sign Up</TabsTrigger>
             </TabsList>
             
             <TabsContent value="signin" className="space-y-4">
@@ -146,12 +146,12 @@ const Auth = () => {
                         <FormControl>
                           <div className="relative">
                             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                              <Phone className="h-5 w-5 text-gray-400" />
+                              <Phone className="h-5 w-5 text-blue-600" />
                             </div>
-                            <Input placeholder="1234567890" className="pl-10" {...field} />
+                            <Input placeholder="1234567890" className="pl-10 focus-visible:ring-blue-500" {...field} />
                           </div>
                         </FormControl>
-                        <FormMessage />
+                        <FormMessage className="text-blue-700" />
                       </FormItem>
                     )}
                   />
@@ -165,12 +165,12 @@ const Auth = () => {
                         <FormControl>
                           <div className="relative">
                             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                              <Lock className="h-5 w-5 text-gray-400" />
+                              <Lock className="h-5 w-5 text-blue-600" />
                             </div>
-                            <Input type="password" placeholder="Your password" className="pl-10" {...field} />
+                            <Input type="password" placeholder="Your password" className="pl-10 focus-visible:ring-blue-500" {...field} />
                           </div>
                         </FormControl>
-                        <FormMessage />
+                        <FormMessage className="text-blue-700" />
                       </FormItem>
                     )}
                   />
@@ -184,6 +184,7 @@ const Auth = () => {
                           <Checkbox
                             checked={field.value}
                             onCheckedChange={field.onChange}
+                            className="border-blue-500 text-blue-600 focus-visible:ring-blue-500"
                           />
                         </FormControl>
                         <div className="space-y-1 leading-none">
@@ -195,7 +196,7 @@ const Auth = () => {
 
                   <Button 
                     type="submit" 
-                    className="w-full bg-porter-red hover:bg-red-700" 
+                    className="w-full bg-gradient-to-r from-blue-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800" 
                     size="lg"
                   >
                     <LogIn className="mr-2 h-4 w-4" />
@@ -210,7 +211,7 @@ const Auth = () => {
                   <button 
                     type="button" 
                     onClick={() => setActiveTab("signup")} 
-                    className="text-porter-red hover:text-red-700 font-medium"
+                    className="text-blue-600 hover:text-blue-800 font-medium"
                   >
                     Create one
                   </button>
@@ -228,9 +229,9 @@ const Auth = () => {
                       <FormItem>
                         <FormLabel>Full Name</FormLabel>
                         <FormControl>
-                          <Input placeholder="John Doe" {...field} />
+                          <Input placeholder="John Doe" className="focus-visible:ring-blue-500" {...field} />
                         </FormControl>
-                        <FormMessage />
+                        <FormMessage className="text-blue-700" />
                       </FormItem>
                     )}
                   />
@@ -244,12 +245,12 @@ const Auth = () => {
                         <FormControl>
                           <div className="relative">
                             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                              <Phone className="h-5 w-5 text-gray-400" />
+                              <Phone className="h-5 w-5 text-blue-600" />
                             </div>
-                            <Input placeholder="1234567890" className="pl-10" {...field} />
+                            <Input placeholder="1234567890" className="pl-10 focus-visible:ring-blue-500" {...field} />
                           </div>
                         </FormControl>
-                        <FormMessage />
+                        <FormMessage className="text-blue-700" />
                       </FormItem>
                     )}
                   />
@@ -263,12 +264,12 @@ const Auth = () => {
                         <FormControl>
                           <div className="relative">
                             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                              <Lock className="h-5 w-5 text-gray-400" />
+                              <Lock className="h-5 w-5 text-blue-600" />
                             </div>
-                            <Input type="password" placeholder="Create a password" className="pl-10" {...field} />
+                            <Input type="password" placeholder="Create a password" className="pl-10 focus-visible:ring-blue-500" {...field} />
                           </div>
                         </FormControl>
-                        <FormMessage />
+                        <FormMessage className="text-blue-700" />
                       </FormItem>
                     )}
                   />
@@ -282,12 +283,12 @@ const Auth = () => {
                         <FormControl>
                           <div className="relative">
                             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                              <Lock className="h-5 w-5 text-gray-400" />
+                              <Lock className="h-5 w-5 text-blue-600" />
                             </div>
-                            <Input type="password" placeholder="Confirm your password" className="pl-10" {...field} />
+                            <Input type="password" placeholder="Confirm your password" className="pl-10 focus-visible:ring-blue-500" {...field} />
                           </div>
                         </FormControl>
-                        <FormMessage />
+                        <FormMessage className="text-blue-700" />
                       </FormItem>
                     )}
                   />
@@ -301,6 +302,7 @@ const Auth = () => {
                           <Checkbox
                             checked={field.value}
                             onCheckedChange={field.onChange}
+                            className="border-blue-500 text-blue-600 focus-visible:ring-blue-500"
                           />
                         </FormControl>
                         <div className="space-y-1 leading-none">
@@ -312,7 +314,7 @@ const Auth = () => {
 
                   <Button 
                     type="submit" 
-                    className="w-full bg-porter-red hover:bg-red-700" 
+                    className="w-full bg-gradient-to-r from-blue-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800" 
                     size="lg"
                   >
                     <UserPlus className="mr-2 h-4 w-4" />
@@ -327,7 +329,7 @@ const Auth = () => {
                   <button 
                     type="button" 
                     onClick={() => setActiveTab("signin")} 
-                    className="text-porter-red hover:text-red-700 font-medium"
+                    className="text-blue-600 hover:text-blue-800 font-medium"
                   >
                     Sign in
                   </button>
